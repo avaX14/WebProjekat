@@ -1,4 +1,5 @@
 $(function(){
+	$.ajaxSetup({ cache: false });
 	var $users = $('#users'); 
 	$.ajax({
 		type: 'GET',

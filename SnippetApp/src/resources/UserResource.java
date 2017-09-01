@@ -30,7 +30,7 @@ public class UserResource {
 	}
 	
 	@POST
-	@Path("/addUser")
+	@Path("/registerUser")
 	public User addUser(User user){
 		System.out.println("USAO U RESOURCES");
 		return userService.addUser(user);

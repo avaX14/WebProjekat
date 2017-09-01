@@ -13,16 +13,19 @@ import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import model.User;
 
 public class UserDatabase {
 	
 	private static Map<String, User> allUsers = new HashMap<>();
-	private static String filePath = "C:\\Users\\Branko\\Desktop\\FAKS\\New folder\\SnippetApp\\users.txt";
-	private static String jsonPath = "C:\\Users\\Branko\\Desktop\\FAKS\\New folder\\SnippetApp\\users.json";
+	private static String filePath = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\users.txt";
 	
 	public static Map<String, User> getUsers() {
 		
@@ -58,7 +61,7 @@ public class UserDatabase {
 		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
 			System.out.println("USAO U FOR");
 			if(user.getUserName().equals(entry.getKey())){
-				System.out.println("USAO U IF");
+				System.out.println("USER VEC REGISTROVAN");
 				return null;
 			}
 		}
@@ -67,8 +70,6 @@ public class UserDatabase {
 		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
 			System.out.println(entry.getValue().toString());
 		}
-		
-		
 		
 		writeFile();
 		
@@ -92,29 +93,16 @@ public class UserDatabase {
 	public static void writeFile(){
 		File outputFile;
 		BufferedWriter outputWriter;
-		ObjectMapper mapper = new ObjectMapper();
-		List<User> jsonUsers = new ArrayList<>();
-		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
-			
-			jsonUsers.add(entry.getValue());
-		}
-		
-		JSONArray array = new JSONArray();
-		
-		for (int i = 0; i < jsonUsers.size(); i++) {
-			array.add();
-		}
-		
-		
 		
 		
 		outputFile = new File(filePath);
 		try {
+			
 			outputWriter = new BufferedWriter(new FileWriter(outputFile));
 			for (Map.Entry<String, User> entry : allUsers.entrySet()) {
 				outputWriter.write(entry.getValue().toString());
-				System.out.println("POKUSAVAM JSON");
-				mapper.writeValue(new File(jsonPath), array);
+				outputWriter.newLine();
+				
 				
 			}
 			outputWriter.close();
@@ -134,6 +122,7 @@ public class UserDatabase {
 				String[] parts = line.split("\\|");
 				User user = new User(parts[0], parts[1], parts[2], parts[3], parts[4], Integer.parseInt(parts[5]), parts[6], parts[7], parts[8]);
 				allUsers.put(parts[0], user);
+				System.out.println(user.toString());
 			}
 			
 		} catch (FileNotFoundException e) {

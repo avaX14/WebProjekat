@@ -1,0 +1,2 @@
+1|opis za prvi snipet|public static void main{}|java||nema url
+2|opis za drugi snipet|print|python||nema url

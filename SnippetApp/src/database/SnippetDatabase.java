@@ -7,97 +7,126 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import model.Comment;
+import model.Rating;
+import model.Snippet;
 import model.User;
 
 public class SnippetDatabase {
 	
-	private static Map<String, User> allUsers = new HashMap<>();
-	private static String filePath = "C:\\Users\\Branko\\Desktop\\FAKS\\New folder\\SnippetApp\\users.txt";
-	private static String jsonPath = "C:\\Users\\Branko\\Desktop\\FAKS\\New folder\\SnippetApp\\users.json";
+	private static Map<Integer, Snippet> allSnippets = new HashMap<>();
+	private static Map<Integer, Comment> allComments = new HashMap<>();
+	private static String filePath = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\snippets.txt";
+	private static String filePathCom = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\comments.txt";
 	
-	public static Map<String, User> getUsers() {
+	public static Map<Integer, Snippet> getSnippets() {
 		
-		readFile();
+		readSnippets();
 		
-		return allUsers;
+		return allSnippets;
 	}
 	
-	public static User getUser(String userName){
-		readFile();
-		User foundUser = null;
+	public static List<Comment> getComments(Snippet snippet) {
 		
-		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
-			if(userName.equals(entry.getKey())){
-				foundUser = entry.getValue();
+		readComments(snippet.getId());
+		
+		List<Comment> listaCom = new ArrayList<>();
+		
+		for (Map.Entry<Integer, Comment> entry : allComments.entrySet()) {
+			listaCom.add(entry.getValue());	    
+		}
+		
+		
+		return listaCom;
+	}
+	
+	
+	public static Snippet getSnippet(Integer id){
+		readSnippets();
+		Snippet foundSnippet = null;
+		
+		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
+			if(id.equals(entry.getKey())){
+				foundSnippet = entry.getValue();
 			}
 		    
 		}
-		return foundUser;
+		return foundSnippet;
 	}
 	
-	public static User updateUser(User user){
-		readFile();
-		allUsers.put(user.getUserName(), user);
-		writeFile();
-		return user;
+	public static Snippet updateSnippet(Snippet snippet){
+		readSnippets();
+		allSnippets.put(snippet.getId(), snippet);
+		writeSnippets();
+		return snippet;
 		//writeFile();
 	}
 	
-	public static User addUser(User user){
+	public static Snippet addSnippet(Snippet snippet){
 		System.out.println("USAO U DATABASE");
-		readFile();
-		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
+		readSnippets();
+		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
 			System.out.println("USAO U FOR");
-			if(user.getUserName().equals(entry.getKey())){
+			if(snippet.getId()==entry.getKey()){
 				System.out.println("USAO U IF");
 				return null;
 			}
 		}
-		allUsers.put(user.getUserName(), user);
+		allSnippets.put(snippet.getId(), snippet);
 		
-		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
+		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
 			System.out.println(entry.getValue().toString());
 		}
 		
 		
 		
-		writeFile();
+		writeSnippets();
 		
-		return user;
+		return snippet;
 		
 	}
 	
-	public static void deleteUser(User user){
-		readFile();
+	public static void deleteSnippet(Snippet snippet){
+		readSnippets();
 		
-		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
+		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
 			System.out.println("USAO U FOR");
-			if(user.getUserName().equals(entry.getKey())){
-				allUsers.remove(user.getUserName());
+			if(snippet.getId()==entry.getKey()){
+				allSnippets.remove(snippet.getId());
 			}
 		}
 		
-		writeFile();
+		writeSnippets();
 	}
 	
-	public static void writeFile(){
+	public static void writeSnippets(){
 		File outputFile;
+		File outputFile2;
 		BufferedWriter outputWriter;
-		ObjectMapper mapper = new ObjectMapper();
-		
 		outputFile = new File(filePath);
+		outputFile2 = new File(filePath);
+		
 		try {
 			
 			outputWriter = new BufferedWriter(new FileWriter(outputFile));
-			for (Map.Entry<String, User> entry : allUsers.entrySet()) {
+			for (Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
 				outputWriter.write(entry.getValue().toString());
-				mapper.writeValue(new File(jsonPath), entry.getValue());
-				
+				outputWriter.newLine();
+			}
+			outputWriter.close();
+			
+			outputWriter = new BufferedWriter(new FileWriter(outputFile2));
+			for (Entry<Integer, Comment> entry : allComments.entrySet()) {
+				outputWriter.write(entry.getValue().toString());
+				outputWriter.newLine();
 			}
 			outputWriter.close();
 		} catch (IOException e) {
@@ -107,16 +136,79 @@ public class SnippetDatabase {
 		
 	}
 	
-	public static void readFile(){
+	public static void writeComments(){
+		File outputFile;
+		BufferedWriter outputWriter;
+		outputFile = new File(filePath);
+		
 		try {
+			
+			outputWriter = new BufferedWriter(new FileWriter(outputFile));
+			for (Entry<Integer, Comment> entry : allComments.entrySet()) {
+				outputWriter.write(entry.getValue().toString());
+				outputWriter.newLine();
+			}
+			outputWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void readSnippets(){
+		try {
+			System.out.println("TRAZIM FAJL");
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 			String line;
 			
+			BufferedReader br2 = new BufferedReader(new FileReader(filePathCom));
+			String line2;
+			
 			while((line = br.readLine())!=null){
 				String[] parts = line.split("\\|");
-				User user = new User(parts[0], parts[1], parts[2], parts[3], parts[4], Integer.parseInt(parts[5]), parts[6], parts[7], parts[8]);
-				allUsers.put(parts[0], user);
+				Snippet snippet = new Snippet(Integer.parseInt(parts[0]), parts[1], parts[2], parts[3], parts[4]);
+				allSnippets.put(Integer.parseInt(parts[0]), snippet);
+				System.out.println(snippet.toString());
 			}
+			
+			while((line2 = br2.readLine())!=null){
+				String[] parts = line2.split("\\|");
+				Comment comment = new Comment(Integer.parseInt(parts[0]),Integer.parseInt(parts[1]), parts[2], parts[3], parts[4], new Rating(Integer.parseInt(parts[5]), Integer.parseInt(parts[6])));
+				allComments.put(Integer.parseInt(parts[1]), comment);
+				System.out.println(comment.toString());
+			}
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void readComments(Integer snippetId){
+		try {
+			System.out.println("TRAZIM FAJL");
+			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			String line;
+	
+			while((line = br.readLine())!=null){
+				String[] parts = line.split("\\|");
+				Comment comment = new Comment(Integer.parseInt(parts[0]),Integer.parseInt(parts[1]), parts[2], parts[3], parts[4], new Rating(Integer.parseInt(parts[5]), Integer.parseInt(parts[6])));
+				if(comment.getSnippetId() == snippetId){
+					allComments.put(Integer.parseInt(parts[1]), comment);
+					System.out.println(comment.toString());
+				}
+			}
+			
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

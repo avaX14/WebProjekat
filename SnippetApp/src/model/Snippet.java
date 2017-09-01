@@ -2,21 +2,31 @@ package model;
 
 public class Snippet {
 	
-	public String opis;
-	public String kod;
-	public String jezik;
-	public String url;
+	private Integer id;
+	private String opis;
+	private String kod;
+	private String jezik;
+	private String url;
 	
 	public Snippet(){
 		
 	}
-	
-	public Snippet(String opis, String kod, String jezik, String url) {
+
+	public Snippet(Integer id, String opis, String kod, String jezik, String url) {
 		super();
+		this.id = id;
 		this.opis = opis;
 		this.kod = kod;
 		this.jezik = jezik;
 		this.url = url;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getOpis() {
@@ -50,11 +60,13 @@ public class Snippet {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
 	@Override
 	public String toString() {
-		return opis + "|" + kod+ "|" +jezik+ "|" +url;
+		return id + "|" + opis + "|" + kod + "|" + jezik + "|" + "|" + url;
 	}
+	
+	
 	
 	
 
