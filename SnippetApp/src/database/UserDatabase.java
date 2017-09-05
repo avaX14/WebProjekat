@@ -60,6 +60,8 @@ public class UserDatabase {
 		readFile();
 		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
 			System.out.println("USAO U FOR");
+			System.out.println("Ispisujem poslatog usera: " + user.getUserName());
+			System.out.println("Ispisujem postojeceg usera: " + entry.getKey());
 			if(user.getUserName().equals(entry.getKey())){
 				System.out.println("USER VEC REGISTROVAN");
 				return null;
