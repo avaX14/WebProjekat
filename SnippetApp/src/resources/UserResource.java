@@ -12,6 +12,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.json.JSONObject;
+
 import model.User;
 import Service.UserService;
 
@@ -33,9 +35,19 @@ public class UserResource {
 	@Path("/registerUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public User addUser(User user){
+	public User registerUser(User user){
 		System.out.println("USAO U RESOURCES");
 		return userService.addUser(user);
+	}
+	
+	@POST
+	@Path("/loginUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User loginUser(User user){
+		System.out.println("USAO SAM U LOGIN");
+		System.out.println(user.getUserName());
+		return userService.getUser(user.getUserName(), user.getPassword());
 	}
 	
 	@PUT
@@ -49,13 +61,7 @@ public class UserResource {
 	public void deleteUser(User user){
 		userService.deleteUser(user);
 	}
-	
-	
-	@GET
-	@Path("/{userName}")
-	public User test(@PathParam("userName") String userName){
-		return userService.getUser(userName);
-	}
+
 	
 	
 	

@@ -16,8 +16,8 @@ public class UserService {
 		return new ArrayList<User>(users.values());
 	}
 	
-	public User getUser(String userName){
-		User user = UserDatabase.getUser(userName);
+	public User getUser(String userName, String password){
+		User user = UserDatabase.getUser(userName, password);
 		return user;
 	}
 	

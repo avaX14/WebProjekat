@@ -34,12 +34,13 @@ public class UserDatabase {
 		return allUsers;
 	}
 	
-	public static User getUser(String userName){
+	public static User getUser(String userName, String password){
 		readFile();
 		User foundUser = null;
 		
 		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
-			if(userName.equals(entry.getKey())){
+			if(userName.equals(entry.getKey()) && password.equals(entry.getValue().getPassword())){
+				System.out.println("PRONASAO SAM KORISNIKA");
 				foundUser = entry.getValue();
 			}
 		    
