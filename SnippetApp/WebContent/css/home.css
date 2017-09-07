@@ -1,0 +1,136 @@
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+body{
+    font-family: sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color: #f4f4f4;
+    font-family: "Roboto", sans-serif;
+}
+
+.container{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.snippet{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+.dark{
+    padding: 15px;
+    background: #35424e;
+    color:#ffffff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Header */
+header{
+    background: #35424a;
+    color:white;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+
+header a{
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+
+
+header li{
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+header #branding{
+    float: left;
+}
+
+header #branding h1{
+    margin: 0;
+}
+
+header nav{
+    float: right;
+    margin-top: 10px;
+}
+
+header .highlight, header .current a{
+    color: #e8491d;
+}
+
+header a:hover{
+    color: #cccccc;
+    font-weight: bold;    
+}
+
+input{
+	width:500px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 2px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea{
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+select{
+    width: 150px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    
+}
+
+button{
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 20%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+.search{
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.search:focus {
+    width: 80%;
+}

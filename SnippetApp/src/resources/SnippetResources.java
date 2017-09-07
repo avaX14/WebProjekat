@@ -31,6 +31,8 @@ public class SnippetResources {
 	@Path("/addSnippet")
 	public Snippet addSnippet(Snippet snippet){
 		System.out.println("USAO U RESOURCES");
+		System.out.println("USERNAME:  " + snippet.getUserName());
+		System.out.println(snippet.getUrlKoda());
 		return snippetService.addSnippet(snippet);
 	}
 	

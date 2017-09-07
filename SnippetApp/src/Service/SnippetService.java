@@ -12,11 +12,10 @@ import database.SnippetDatabase;
 public class SnippetService {
 	
 	SnippetDatabase snippetDatabase = new SnippetDatabase();
-	private Map<Integer, Snippet> snippets = SnippetDatabase.getSnippets();
 	
 	
 	public List<Snippet> getAllSnippets(){
-		return new ArrayList<Snippet>(snippets.values());
+		return new ArrayList<Snippet>(SnippetDatabase.getSnippets().values());
 	}
 	
 	public Snippet getSnippet(Integer id){

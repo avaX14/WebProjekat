@@ -2,8 +2,8 @@ package model;
 
 public class Comment {
 	
-	private Integer snippetId;
-	private Integer commentId;
+	private int snippetId;
+	private int commentId;
 	private String tekst;
 	private String datum;
 	private String userId;
@@ -13,7 +13,7 @@ public class Comment {
 		
 	}
 
-	public Comment(Integer snippetId, Integer commentId, String tekst, String datum, String userId,
+	public Comment(int snippetId, int commentId, String tekst, String datum, String userId,
 			Rating rating) {
 		super();
 		this.snippetId = snippetId;
@@ -24,11 +24,11 @@ public class Comment {
 		this.commentId = commentId;
 	}
 
-	public Integer getSnippetId() {
+	public int getSnippetId() {
 		return snippetId;
 	}
 
-	public void setSnippetId(Integer snippetId) {
+	public void setSnippetId(int snippetId) {
 		this.snippetId = snippetId;
 	}
 
@@ -64,11 +64,11 @@ public class Comment {
 		this.rating = rating;
 	}
 
-	public Integer getCommentId() {
+	public int getCommentId() {
 		return commentId;
 	}
 
-	public void setCommentId(Integer commentId) {
+	public void setCommentId(int commentId) {
 		this.commentId = commentId;
 	}
 

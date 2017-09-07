@@ -1,2 +1,2 @@
-1|opis za prvi snipet|public static void main{}|java||nema url
-2|opis za drugi snipet|print|python||nema url
+1|maki|2017-09-06T22:58:04.250Z|ccccccccc|ccccccccccc|Python|cccccccccccc
+2|maki|2017-09-06T22:58:04.250Z|Opis drugog snipeta|ccccccccccc|Python|cccccccccccc

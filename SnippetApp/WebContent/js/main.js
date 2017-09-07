@@ -2,6 +2,12 @@ $(document).ready(function() {
 	
 	$("#btnLogin").click(function(){
 		
+		localStorage.clear();
+        var value = $('#logUserName').val();
+        localStorage.setItem("userName", value);
+        
+        console.log(localStorage.getItem("userName"));
+		
 		var obj = { "userName":$('#logUserName').val(), "password" : $('#logPassword').val()};
     	
         console.log(obj);

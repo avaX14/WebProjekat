@@ -2,30 +2,34 @@ package model;
 
 public class Snippet {
 	
-	private Integer id;
+	private int id;
+	private String userName;
+	private String vremeDatum;
 	private String opis;
 	private String kod;
 	private String jezik;
-	private String url;
+	private String urlKoda;
 	
 	public Snippet(){
 		
 	}
 
-	public Snippet(Integer id, String opis, String kod, String jezik, String url) {
+	public Snippet(int id, String userName, String vremeDatum, String opis, String kod, String jezik, String urlKoda) {
 		super();
 		this.id = id;
 		this.opis = opis;
 		this.kod = kod;
 		this.jezik = jezik;
-		this.url = url;
+		this.urlKoda = urlKoda;
+		this.userName = userName;
+		this.vremeDatum = vremeDatum;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -53,17 +57,35 @@ public class Snippet {
 		this.jezik = jezik;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getUrlKoda() {
+		return urlKoda;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUrlKoda(String urlKoda) {
+		this.urlKoda = urlKoda;
+	}
+	
+	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getVremeDatum() {
+		return vremeDatum;
+	}
+
+	public void setVremeDatum(String vremeDatum) {
+		this.vremeDatum = vremeDatum;
 	}
 
 	@Override
 	public String toString() {
-		return id + "|" + opis + "|" + kod + "|" + jezik + "|" + "|" + url;
+		return id + "|" + userName + "|" + vremeDatum + "|" + opis + "|" + urlKoda + "|" + jezik + "|" + kod;
 	}
 	
 	

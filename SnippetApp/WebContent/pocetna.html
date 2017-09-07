@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+<!-- Bootstrap -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/home.css">
+<script type="text/javascript" src="js/addSnippet.js"> </script>
+
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>DOBRODOSLI!</h1>
+	<header>
+      <div class="container">
+          <div id="branding">
+              <h1><span class="highlight">Snippet</span> App</h1>
+          </div>
+          <nav>
+              <ul>
+                  <li><a href="index.html">Početna</a></li>
+                  <li><a href="snippeti.html">Snippeti</a></li>
+                  <li><a href="services.html">Odjava</a></li>
+              </ul>
+          </nav>
+      </div>
+  	</header>
+  	
+  	<div class = "container">
+        <div class="snippet">
+           <input class = "search" type="text" name="search" placeholder="Search.."><br><br>
+           <select id="jezik">
+                <option value="" selected disabled hidden>Programski jezik</option>
+                <option value="java">Java</option>
+                <option value="python">Python</option>
+            </select>
+            <br><br>
+            <input type="text" id="opisSnippeta" placeholder = "Kratak opis"><br><br>
+            <textarea rows="20" cols="100" id="kod">Isečak programskog koda</textarea><br><br>
+            <input type="text" id="urlKoda" placeholder = "URL do repozitorijuma odakle je snippet preuzet"><br><br>
+            <button type="text" id="snippetSubmit">Postavi snippet</button>
+		</div>
+  	</div>
+  
 </body>
 </html>

@@ -24,7 +24,7 @@ public class SnippetDatabase {
 	
 	private static Map<Integer, Snippet> allSnippets = new HashMap<>();
 	private static Map<Integer, Comment> allComments = new HashMap<>();
-	private static String filePath = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\snippets.txt";
+	private static String snippetFilePath = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\snippets.txt";
 	private static String filePathCom = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\comments.txt";
 	
 	public static Map<Integer, Snippet> getSnippets() {
@@ -71,26 +71,20 @@ public class SnippetDatabase {
 	}
 	
 	public static Snippet addSnippet(Snippet snippet){
-		System.out.println("USAO U DATABASE");
 		readSnippets();
-		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
-			System.out.println("USAO U FOR");
-			if(snippet.getId()==entry.getKey()){
-				System.out.println("USAO U IF");
-				return null;
-			}
-		}
+		
+		System.out.println("Velicina niza snippeta: " + allSnippets.size());
+		
+		int i = allSnippets.size();
+		snippet.setId(i+1);
+		
+		System.out.println("ID OD SNIPPETA JE: " + snippet.getId());
 		allSnippets.put(snippet.getId(), snippet);
-		
-		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
-			System.out.println(entry.getValue().toString());
-		}
-		
-		
-		
 		writeSnippets();
 		
 		return snippet;
+		
+	
 		
 	}
 	
@@ -109,22 +103,13 @@ public class SnippetDatabase {
 	
 	public static void writeSnippets(){
 		File outputFile;
-		File outputFile2;
 		BufferedWriter outputWriter;
-		outputFile = new File(filePath);
-		outputFile2 = new File(filePath);
+		outputFile = new File(snippetFilePath);
 		
 		try {
 			
 			outputWriter = new BufferedWriter(new FileWriter(outputFile));
 			for (Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
-				outputWriter.write(entry.getValue().toString());
-				outputWriter.newLine();
-			}
-			outputWriter.close();
-			
-			outputWriter = new BufferedWriter(new FileWriter(outputFile2));
-			for (Entry<Integer, Comment> entry : allComments.entrySet()) {
 				outputWriter.write(entry.getValue().toString());
 				outputWriter.newLine();
 			}
@@ -139,7 +124,7 @@ public class SnippetDatabase {
 	public static void writeComments(){
 		File outputFile;
 		BufferedWriter outputWriter;
-		outputFile = new File(filePath);
+		outputFile = new File(filePathCom);
 		
 		try {
 			
@@ -158,28 +143,36 @@ public class SnippetDatabase {
 	
 	public static void readSnippets(){
 		try {
-			System.out.println("TRAZIM FAJL");
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			/*
+			BufferedReader br = new BufferedReader(new FileReader(snippetFilePath));
 			String line;
 			
-			BufferedReader br2 = new BufferedReader(new FileReader(filePathCom));
-			String line2;
-			
 			while((line = br.readLine())!=null){
+				System.out.println("USAO U WHILE");
 				String[] parts = line.split("\\|");
+				System.out.println(Integer.parseInt(parts[0]));
 				Snippet snippet = new Snippet(Integer.parseInt(parts[0]), parts[1], parts[2], parts[3], parts[4]);
 				allSnippets.put(Integer.parseInt(parts[0]), snippet);
 				System.out.println(snippet.toString());
 			}
 			
-			while((line2 = br2.readLine())!=null){
-				String[] parts = line2.split("\\|");
-				Comment comment = new Comment(Integer.parseInt(parts[0]),Integer.parseInt(parts[1]), parts[2], parts[3], parts[4], new Rating(Integer.parseInt(parts[5]), Integer.parseInt(parts[6])));
-				allComments.put(Integer.parseInt(parts[1]), comment);
-				System.out.println(comment.toString());
-			}
+			br.close();
+			*/
 			
-			
+			FileReader in = new FileReader(snippetFilePath);
+		    BufferedReader br = new BufferedReader(in);
+		    
+		    String line = "";
+		    
+
+		    while ((line = br.readLine())!=null) {
+		    	String[] parts = line.split("\\|");
+		    	System.out.println("BROJ PARTOOOOVA: " + parts.length);
+		    	Snippet snippet = new Snippet(Integer.parseInt(parts[0]), parts[1], parts[2], parts[3], parts[6], parts[5], parts[4]);
+				allSnippets.put(Integer.parseInt(parts[0]), snippet);    	
+		    }
+		    in.close();
+		    System.out.println(allSnippets.toString());
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -196,14 +189,14 @@ public class SnippetDatabase {
 	public static void readComments(Integer snippetId){
 		try {
 			System.out.println("TRAZIM FAJL");
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			BufferedReader br = new BufferedReader(new FileReader(filePathCom));
 			String line;
 	
 			while((line = br.readLine())!=null){
 				String[] parts = line.split("\\|");
 				Comment comment = new Comment(Integer.parseInt(parts[0]),Integer.parseInt(parts[1]), parts[2], parts[3], parts[4], new Rating(Integer.parseInt(parts[5]), Integer.parseInt(parts[6])));
 				if(comment.getSnippetId() == snippetId){
-					allComments.put(Integer.parseInt(parts[1]), comment);
+					allComments.put(Integer.parseInt(parts[0]), comment);
 					System.out.println(comment.toString());
 				}
 			}
