@@ -10,10 +10,9 @@ import database.UserDatabase;
 public class UserService {
 	
 	UserDatabase userDatabase = new UserDatabase();
-	private Map<String, User> users = UserDatabase.getUsers();
 	
 	public List<User> getAllUsers(){
-		return new ArrayList<User>(users.values());
+		return new ArrayList<User>(UserDatabase.getUsers().values());
 	}
 	
 	public User getUser(String userName, String password){

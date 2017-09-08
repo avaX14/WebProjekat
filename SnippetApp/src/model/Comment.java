@@ -7,20 +7,17 @@ public class Comment {
 	private String tekst;
 	private String datum;
 	private String userId;
-	private Rating rating;
 	
 	public Comment(){
 		
 	}
 
-	public Comment(int snippetId, int commentId, String tekst, String datum, String userId,
-			Rating rating) {
+	public Comment(int snippetId, int commentId, String tekst, String datum, String userId) {
 		super();
 		this.snippetId = snippetId;
 		this.tekst = tekst;
 		this.datum = datum;
 		this.userId = userId;
-		this.rating = rating;
 		this.commentId = commentId;
 	}
 
@@ -56,13 +53,7 @@ public class Comment {
 		this.userId = userId;
 	}
 
-	public Rating getRating() {
-		return rating;
-	}
 
-	public void setRating(Rating rating) {
-		this.rating = rating;
-	}
 
 	public int getCommentId() {
 		return commentId;
@@ -74,7 +65,7 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return snippetId + "|" + commentId + "|" + tekst + "|" + datum + "|" + userId + "|" + rating.getPositive() + "|" + rating.getNegative();
+		return snippetId + "|" + commentId + "|" + tekst + "|" + datum + "|" + userId;
 	}
 	
 }

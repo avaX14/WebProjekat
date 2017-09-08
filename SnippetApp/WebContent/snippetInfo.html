@@ -12,11 +12,11 @@
 <!-- Bootstrap -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/home.css">
-<script type="text/javascript" src="js/addSnippet.js"> </script>
+<script type="text/javascript" src="js/info.js"> </script>
 
-<title>Insert title here</title>
 </head>
 <body>
+
 	<header>
       <div class="container">
           <div id="branding">
@@ -33,20 +33,34 @@
   	</header>
   	
   	<div class = "container">
+  	
         <div class="snippet">
-           
-           <select id="jezik">
-                <option value="" selected disabled hidden="true">Programski jezik</option>
-                <option value="java">Java</option>
-                <option value="python">Python</option>
-            </select>
-            <br><br>
-            <input type="text" id="opisSnippeta" placeholder = "Kratak opis"><br><br>
-            <textarea rows="20" cols="100" id="kod">Isečak programskog koda</textarea><br><br>
-            <input type="text" id="urlKoda" placeholder = "URL do repozitorijuma odakle je snippet preuzet"><br><br>
-            <button type="text" id="snippetSubmit">Postavi snippet</button>
+      		<label>Kreirao: </label><br>
+        	<label id="userName"></label><br>
+        	<label>Datum: </label><br>
+        	<label id="datum"></label><br>
+        	<label>Programski jezik: </label><br>
+        	<label id="progJezik"></label><br><br>
+            <input type="text" id="opisSnippeta" readonly><br><br>
+            <textarea rows="20" cols="100" id="kod" readonly>Isečak programskog koda</textarea><br><br>
+            <input type="text" id="urlKoda" readonly><br><br>
 		</div>
+			
+		<div class = "comment">
+			<textarea rows="10" cols="100" id="komentar">Ostavite komentar</textarea><br><br>
+			<button type="text" id="ostaviKomentar">Ostavi komentar</button>
+		</div>
+		
+		<div class="komentari">
+			<ul id="comments">
+			</ul>
+		</div>
+		
   	</div>
-  
+  	
+  	
+
+
+
 </body>
 </html>

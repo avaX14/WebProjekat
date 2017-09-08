@@ -30,10 +30,20 @@ public class SnippetResources {
 	@POST
 	@Path("/addSnippet")
 	public Snippet addSnippet(Snippet snippet){
-		System.out.println("USAO U RESOURCES");
-		System.out.println("USERNAME:  " + snippet.getUserName());
 		System.out.println(snippet.getUrlKoda());
 		return snippetService.addSnippet(snippet);
+	}
+	
+	@POST
+	@Path("/addComment")
+	public Comment addComment(Comment comment){
+		return snippetService.addComment(comment);	
+	}
+	
+	@POST
+	@Path("/getSnippet")
+	public Snippet getSnippet(Snippet snippet){
+		return snippetService.getSnippet(snippet);
 	}
 	
 	@POST

@@ -134,3 +134,52 @@ button{
 .search:focus {
     width: 80%;
 }
+
+.snippets{
+	margin-top:20px;
+	font-size:25px;
+}
+
+
+.snippets li{
+	margin-top:10px;
+	color:white;
+	background: #35424a;
+	height:50px;
+	margin-bottom :20px;
+	padding:5px;
+	font-size:25px;
+	
+}
+
+.snippets a{
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.comment{
+	border-top: solid 3px black;
+}
+
+.comment textarea{
+	margin-top:5px;
+}
+
+#comments li{
+	border-bottom: solid 2px black;
+	margin-top:10px;
+	color:#35424a;
+	height:50px;
+	margin-bottom :20px;
+	padding:5px;
+	font-size:20px;
+	
+}
+
+.komentari{
+	margin-top:10px;
+	border: solid 2px black;
+}
+
+

@@ -21,6 +21,9 @@ $(document).ready(function() {
             		console.log('NULL');
             		document.getElementById("messageLogin").className = '';
             	}else{
+            		if(response.role=="admin"){
+            			localStorage.setItem("admin", "true");
+            		}
             		setTimeout(function(){ window.location.href = "pocetna.html"; }, 1000);
             	}
 

@@ -20,7 +20,7 @@ $(document).ready(function() {
             	if(response==null){
             		console.log('NULL');
             	}else{
-            		alert("DODAT SNIPPET");
+            		setTimeout(function(){ window.location.href = "snippeti.html"; }, 1000);
             	}
 
             }

@@ -18,14 +18,21 @@ public class SnippetService {
 		return new ArrayList<Snippet>(SnippetDatabase.getSnippets().values());
 	}
 	
-	public Snippet getSnippet(Integer id){
-		Snippet snippet = SnippetDatabase.getSnippet(id);
-		return snippet;
+	public Snippet getSnippet(Snippet snippet){
+		Snippet snippet2 = SnippetDatabase.getSnippet(snippet);
+		return snippet2;
 	}
+	
+
 	
 	public Snippet addSnippet(Snippet snippet){
 		System.out.println("USAO U SERVICE");
 		return SnippetDatabase.addSnippet(snippet);
+		
+	}
+	
+	public Comment addComment(Comment comment){
+		return SnippetDatabase.addComment(comment);
 		
 	}
 	

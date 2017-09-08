@@ -1,1 +1,7 @@
-1|1|tekst komentara|14.12.1994|kare|5|2
+1|1|sddsads|2017-09-08T09:44:26.677Z|Gost
+1|2|dsadsadsd|2017-09-08T10:16:54.371Z|Gost
+1|3|treci komentar|2017-09-08T10:16:54.371Z|Gost
+1|4|cetvrti komentar|2017-09-08T10:32:19.225Z|Gost
+1|5|makijev komentar|2017-09-08T10:32:54.886Z|Gost
+1|6|aaaaaaaaaaa|2017-09-08T10:36:39.215Z|Gost
+1|7|bbbbbbbbbbbb|2017-09-08T10:49:59.817Z|maki

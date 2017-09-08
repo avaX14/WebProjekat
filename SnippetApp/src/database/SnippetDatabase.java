@@ -36,12 +36,19 @@ public class SnippetDatabase {
 	
 	public static List<Comment> getComments(Snippet snippet) {
 		
-		readComments(snippet.getId());
+		readComments();
 		
 		List<Comment> listaCom = new ArrayList<>();
 		
 		for (Map.Entry<Integer, Comment> entry : allComments.entrySet()) {
-			listaCom.add(entry.getValue());	    
+			if(snippet.getId()==entry.getValue().getSnippetId()){
+				listaCom.add(entry.getValue());
+			}
+				    
+		}
+		
+		for (int i = 0; i < listaCom.size(); i++) {
+			System.out.println("Komentar: " + listaCom.get(i).toString());
 		}
 		
 		
@@ -49,12 +56,13 @@ public class SnippetDatabase {
 	}
 	
 	
-	public static Snippet getSnippet(Integer id){
+	public static Snippet getSnippet(Snippet snippet){
 		readSnippets();
 		Snippet foundSnippet = null;
+		int snippetId = snippet.getId();
 		
 		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
-			if(id.equals(entry.getKey())){
+			if(snippetId==entry.getKey()){
 				foundSnippet = entry.getValue();
 			}
 		    
@@ -79,10 +87,31 @@ public class SnippetDatabase {
 		snippet.setId(i+1);
 		
 		System.out.println("ID OD SNIPPETA JE: " + snippet.getId());
+		if(snippet.getUserName()==null){
+			snippet.setUserName("Gost");
+		}
 		allSnippets.put(snippet.getId(), snippet);
 		writeSnippets();
 		
 		return snippet;
+		
+	
+		
+	}
+	
+	public static Comment addComment(Comment comment){
+		readComments();
+		
+		int i = allComments.size();
+		comment.setCommentId(i+1);
+		
+		if(comment.getUserId()==null){
+			comment.setUserId("Gost");
+		}
+		allComments.put(comment.getCommentId(), comment);
+		writeComments();
+		
+		return comment;
 		
 	
 		
@@ -186,20 +215,21 @@ public class SnippetDatabase {
 		}
 	}
 	
-	public static void readComments(Integer snippetId){
+	public static void readComments(){
 		try {
 			System.out.println("TRAZIM FAJL");
-			BufferedReader br = new BufferedReader(new FileReader(filePathCom));
+			FileReader in = new FileReader(filePathCom);
+			BufferedReader br = new BufferedReader(in);
 			String line;
 	
 			while((line = br.readLine())!=null){
 				String[] parts = line.split("\\|");
-				Comment comment = new Comment(Integer.parseInt(parts[0]),Integer.parseInt(parts[1]), parts[2], parts[3], parts[4], new Rating(Integer.parseInt(parts[5]), Integer.parseInt(parts[6])));
-				if(comment.getSnippetId() == snippetId){
-					allComments.put(Integer.parseInt(parts[0]), comment);
-					System.out.println(comment.toString());
-				}
+				Comment comment = new Comment(Integer.parseInt(parts[0]),Integer.parseInt(parts[1]), parts[2], parts[3], parts[4]);
+				allComments.put(Integer.parseInt(parts[1]), comment);
+				System.out.println(comment.toString());
 			}
+			
+			in.close();
 			
 			
 			
