@@ -24,7 +24,7 @@ $(document).ready(function() {
             		if(response.role=="admin"){
             			localStorage.setItem("admin", "true");
             		}
-            		setTimeout(function(){ window.location.href = "pocetna.html"; }, 1000);
+            		window.location.href = "pocetna.html";
             	}
 
             }

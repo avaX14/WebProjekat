@@ -139,4 +139,19 @@ public class UserDatabase {
 			e.printStackTrace();
 		}
 	}
+
+	public static User getOneUser(String userName) {
+		readFile();
+		User foundUser = null;
+		
+		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
+			if(userName.equals(entry.getKey())){
+				System.out.println("PRONASAO SAM KORISNIKA");
+				foundUser = entry.getValue();
+			}
+		    
+		}
+		return foundUser;
+		
+	}
 }

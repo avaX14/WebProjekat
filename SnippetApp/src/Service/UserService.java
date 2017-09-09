@@ -33,5 +33,9 @@ public class UserService {
 	public void deleteUser(User user){
 		UserDatabase.deleteUser(user);
 	}
+
+	public User getOneUser(String userName) {
+		return UserDatabase.getOneUser(userName);
+	}
 	
 }

@@ -12,7 +12,7 @@
 <!-- Bootstrap -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/home.css">
-<script type="text/javascript" src="js/getSnippets.js"> </script>
+<script type="text/javascript" src="js/profile.js"> </script>
 
 </head>
 <body>
@@ -33,9 +33,17 @@
   	</header>
 
 	<div class = "container">
-		<ul id="users" class="snippets">
-			
-		</ul>
+		<div class="userInfo">
+			<input type="text" id="userName" readonly><br><br>
+			<input type="text" id="firstName" readonly><br><br>
+			<input type="text" id="lastName" readonly><br><br>
+			<input type="text" id="password" readonly><br><br>
+			<input type="text" id="phone" readonly><br><br>
+			<input type="text" id="email" readonly><br><br>
+			<input type="text" id="address" readonly><br><br>
+		</div>
+		
+		<button id="odjava" style="background:red;">Odjavi se</button><br><br>
 	</div>
 
 </body>

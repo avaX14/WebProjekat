@@ -152,6 +152,10 @@ button{
 	
 }
 
+.snippets li:hover{
+	background: #466493;
+}
+
 .snippets a{
     color: white;
     text-decoration: none;
@@ -180,6 +184,11 @@ button{
 .komentari{
 	margin-top:10px;
 	border: solid 2px black;
+}
+
+.userInfo{
+	margin-top:20px;
+	font-size:25px;
 }
 
 

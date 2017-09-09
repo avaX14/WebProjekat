@@ -19,6 +19,7 @@ public class SnippetService {
 	}
 	
 	public Snippet getSnippet(Snippet snippet){
+		System.out.println("USAO U GET SNIPPET SERVICE");
 		Snippet snippet2 = SnippetDatabase.getSnippet(snippet);
 		return snippet2;
 	}

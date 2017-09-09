@@ -12,11 +12,12 @@
 <!-- Bootstrap -->
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/home.css">
-<script type="text/javascript" src="js/info.js"> </script>
+<script type="text/javascript" src="js/profile.js"> </script>
 
+
+<title>Insert title here</title>
 </head>
 <body>
-
 	<header>
       <div class="container">
           <div id="branding">
@@ -33,35 +34,22 @@
   	</header>
   	
   	<div class = "container">
-  	
-        <div class="snippet">
-      		<label>Kreirao: </label><br>
-        	<label id="userName"></label><br>
-        	<label>Datum: </label><br>
-        	<label id="datum"></label><br>
-        	<label>Programski jezik: </label><br>
-        	<label id="progJezik"></label><br><br>
-            <input type="text" id="opisSnippeta" readonly><br><br>
-            <textarea rows="20" cols="100" id="kod" readonly>Isečak programskog koda</textarea><br><br>
-            <input type="text" id="urlKoda" readonly><br><br>
-            
-		</div>
-		<button id="obrisiSnipet" class="hidden" style="background:red;">Obrisi snipet</button><br><br>
-		<div class = "comment">
-			<textarea rows="10" cols="100" id="komentar">Ostavite komentar</textarea><br><br>
-			<button type="text" id="ostaviKomentar">Ostavi komentar</button>
+        <div class="userInfo">
+           
+           <input type="text" id="userName" readonly><br><br>
+           <input type="text" id="firstName" readonly><br><br>
+           <input type="text" id="password" readonly><br><br>
+           <input type="text" id="phone" readonly><br><br>
+           <input type="text" id="email" readonly><br><br>
+           <input type="text" id="address" readonly><br><br>
+           
 		</div>
 		
-		<div class="komentari">
-			<ul id="comments">
-			</ul>
-		</div>
-		
+		<button id="odjava" style="background:red;">Odjavi se</button><br><br>
   	</div>
   	
   	
-
-
-
+  	
+ 
 </body>
 </html>

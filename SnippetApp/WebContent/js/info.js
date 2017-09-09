@@ -19,10 +19,16 @@ $(document).ready(function() {
         		document.getElementById("kod").value = response.kod;
         		document.getElementById("datum").innerHTML = response.vremeDatum;
         		document.getElementById("userName").innerHTML = response.userName;
+        		if(response.userName==localStorage.getItem("userName")){    
+        			console.log("Odobravam dugme");
+        	    	document.getElementById("obrisiSnipet").classList.remove("hidden");
+        	    }
         	}
 
         }
     });
+    
+    
     
     $.ajax({
     	contentType: 'application/json',
@@ -63,4 +69,21 @@ $(document).ready(function() {
             }
         });  
     });
+    
+    $("#obrisiSnipet").click(function(){
+		 $.ajax({
+	    	contentType: 'application/json',
+	        url: '../SnippetApp/rest/snippets/removeSnippet',
+	        type : 'POST',
+	        data: JSON.stringify(obj),
+			success:function(){
+				console.log("Obrisano");
+				window.location.href = "pocetna.html";
+				
+			}
+		});
+		
+	});
+    
+    
 });

@@ -1,4 +1,1 @@
-1|maki|2017-09-06T22:58:04.250Z|ccccccccc|ccccccccccc|Python|cccccccccccc
-2|maki|2017-09-06T22:58:04.250Z|Opis drugog snipeta|ccccccccccc|Python|cccccccccccc
-3|null|2017-09-07T22:22:24.153Z|opis treceg|https://stackoverflow.com/questions/24428930/spring-form-validation-error-java-lang-illegalargumentexception-items-must-n|Java|@ModelAttribute("gradeList")
-4|gost|2017-09-07T22:28:28.477Z|opis 4|2ewqewcss|Java|sdadsssdsaweq
+2|Gost| 9 Septembar 2017 , 03:07|gost|dsadsad|Python|Ise?ak programskog koda

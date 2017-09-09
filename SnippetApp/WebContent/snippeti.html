@@ -35,7 +35,9 @@
 
 	<div class = "container">
 		
-		<input class = "search" type="text" name="search" placeholder="Search.."><br><br>
+		<br><br>
+		<input type="text" id="searchSnippet" onkeyup="myFunction()" placeholder="Pretrazi snipete.."><br><br>
+		
 	
 		<ul id="snippets" class="snippets">
 			
@@ -50,6 +52,27 @@
 	  //alert($(e).attr(localStorage.getItem("snippetId").val()));
 	  // return $(e).attr('data-id');
 	}
+	
+	function myFunction() {
+	    // Declare variables
+	    var input, filter, ul, li, a, i;
+	    input = document.getElementById('searchSnippet');
+	    filter = input.value.toUpperCase();
+	    ul = document.getElementById("snippets");
+	    li = ul.getElementsByTagName('li');
+
+	    // Loop through all list items, and hide those who don't match the search query
+	    for (i = 0; i < li.length; i++) {
+	        a = li[i].getElementsByTagName("a")[0];
+	        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	            li[i].style.display = "";
+	        } else {
+	            li[i].style.display = "none";
+	        }
+	    }
+	}
+	
+	
 </script>
 
 

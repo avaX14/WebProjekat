@@ -43,6 +43,7 @@ public class SnippetResources {
 	@POST
 	@Path("/getSnippet")
 	public Snippet getSnippet(Snippet snippet){
+		System.out.println("USAO U GET SNIPPET");
 		return snippetService.getSnippet(snippet);
 	}
 	
@@ -50,6 +51,12 @@ public class SnippetResources {
 	@Path("/allComments")
 	public List<Comment> getComments(Snippet snippet){
 		return snippetService.getAllComments(snippet);
+	}
+	
+	@POST
+	@Path("/removeSnippet")
+	public void removeSnipet(Snippet snippet){
+		 snippetService.deleteSnippet(snippet);
 	}
 	
 }

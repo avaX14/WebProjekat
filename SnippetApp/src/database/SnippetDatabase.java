@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -57,12 +58,17 @@ public class SnippetDatabase {
 	
 	
 	public static Snippet getSnippet(Snippet snippet){
+		System.out.println("USAO U GET SNIPPET DATABASE");
 		readSnippets();
+		
 		Snippet foundSnippet = null;
 		int snippetId = snippet.getId();
 		
 		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
 			if(snippetId==entry.getKey()){
+				String kod = entry.getValue().getKod();
+				kod = kod.replaceAll("<br>", "\n");
+				entry.getValue().setKod(kod);
 				foundSnippet = entry.getValue();
 			}
 		    
@@ -81,10 +87,22 @@ public class SnippetDatabase {
 	public static Snippet addSnippet(Snippet snippet){
 		readSnippets();
 		
-		System.out.println("Velicina niza snippeta: " + allSnippets.size());
+		int poslednji = 0;
 		
-		int i = allSnippets.size();
-		snippet.setId(i+1);
+		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
+			poslednji = entry.getKey();
+				    
+		}
+		
+		snippet.setId(poslednji+1);
+		
+		
+		System.out.println("Velicina niza snippeta: " + allSnippets.size());
+
+		
+		String kod = snippet.getKod();
+		kod = kod.replaceAll("\\n", "<br>");
+		snippet.setKod(kod);
 		
 		System.out.println("ID OD SNIPPETA JE: " + snippet.getId());
 		if(snippet.getUserName()==null){
@@ -120,14 +138,54 @@ public class SnippetDatabase {
 	public static void deleteSnippet(Snippet snippet){
 		readSnippets();
 		
-		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
-			System.out.println("USAO U FOR");
-			if(snippet.getId()==entry.getKey()){
-				allSnippets.remove(snippet.getId());
-			}
+		
+		Iterator<Map.Entry<Integer, Snippet>> itr = allSnippets.entrySet().iterator();
+		while(itr.hasNext())
+		{
+		   Map.Entry<Integer, Snippet> entry = itr.next();
+		   if(entry.getKey()==snippet.getId())
+		   {
+		      System.out.println("Key : "+entry.getKey()+" Removed.");
+		      itr.remove();  // Call Iterator's remove method.
+		   }
 		}
 		
+		deleteComments(snippet);
+		
+		/*
+		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
+			System.out.println("USAO U FOR");
+			if(snippet.getId()==entry.getKey().intValue()){
+				allSnippets.remove(snippet.getId());
+			}
+		}*/
+		
 		writeSnippets();
+	}
+	
+	public static void deleteComments(Snippet snippet){
+		readComments();
+		
+		Iterator<Map.Entry<Integer, Comment>> itr = allComments.entrySet().iterator();
+		while(itr.hasNext())
+		{
+		   Map.Entry<Integer, Comment> entry = itr.next();
+		   if(entry.getValue().getSnippetId()==snippet.getId())
+		   {
+		      System.out.println("Key : "+entry.getKey()+" Removed.");
+		      itr.remove();  // Call Iterator's remove method.
+		   }
+		}
+		
+		/*
+		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
+			System.out.println("USAO U FOR");
+			if(snippet.getId()==entry.getKey().intValue()){
+				allSnippets.remove(snippet.getId());
+			}
+		}*/
+		
+		writeComments();
 	}
 	
 	public static void writeSnippets(){

@@ -50,6 +50,16 @@ public class UserResource {
 		return userService.getUser(user.getUserName(), user.getPassword());
 	}
 	
+	@POST
+	@Path("/getUser")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public User getOneUser(User user){
+		System.out.println("USAO SAM U LOGIN");
+		System.out.println(user.getUserName());
+		return userService.getOneUser(user.getUserName());
+	}
+	
 	@PUT
 	@Path("/editUser")
 	public User editUser(User user){
