@@ -61,7 +61,33 @@
   	
   	
 
+<script>
+	function getID(e){
+	   // for debug
+	  
+	  localStorage.setItem("commentId", $(e).attr('data-id'));
+	  console.log(localStorage.getItem("commentId"));
+	  var obj = { "commentId":localStorage.getItem("commentId")};
+	 console.log("BRISEM KOMENTAR");
+	 $.ajax({
+	  		contentType: 'application/json',
+	      	url: '../SnippetApp/rest/snippets/removeComment',
+	      	type : 'POST',
+	      	data: JSON.stringify(obj),
+			success:function(){
+				console.log("Obrisano");
+				window.location.reload();
+			
+			}
+	});
+	  //alert($(e).attr(localStorage.getItem("snippetId").val()));
+	  // return $(e).attr('data-id');
+	}
 
+	
+	
+	
+</script>
 
 </body>
 </html>

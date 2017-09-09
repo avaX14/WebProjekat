@@ -1,2 +1,3 @@
+admin1|admin1|Petar|Petrovic|admin|0691234123|admin1@gmail.com|Pap Pavla 14|slika.jpg
 maki|12345|Marko|Markovic|gost|691994440|markomarkovic@gmail.com|Ive Lole Ribara 29|slika.jpg
 baki|4321|Branko|Brankovic|gost|691994440|branko@gmail.com|Ive Lole Ribara 29|slika2.jpg

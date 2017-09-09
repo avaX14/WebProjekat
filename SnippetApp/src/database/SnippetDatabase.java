@@ -120,8 +120,14 @@ public class SnippetDatabase {
 	public static Comment addComment(Comment comment){
 		readComments();
 		
-		int i = allComments.size();
-		comment.setCommentId(i+1);
+		int poslednji = 0;
+		
+		for (Map.Entry<Integer, Comment> entry : allComments.entrySet()) {
+			poslednji = entry.getKey();
+				    
+		}
+		
+		comment.setCommentId(poslednji+1);
 		
 		if(comment.getUserId()==null){
 			comment.setUserId("Gost");
@@ -301,5 +307,23 @@ public class SnippetDatabase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public static void deleteComment(Comment comment) {
+		readComments();
+		
+		
+		Iterator<Map.Entry<Integer, Comment>> itr = allComments.entrySet().iterator();
+		while(itr.hasNext())
+		{
+		   Map.Entry<Integer, Comment> entry = itr.next();
+		   if(entry.getValue().getCommentId()==comment.getCommentId())
+		   {
+		      System.out.println("Key : "+entry.getKey()+" Removed.");
+		      itr.remove();  // Call Iterator's remove method.
+		   }
+		}
+		
+		writeComments();
 	}
 }

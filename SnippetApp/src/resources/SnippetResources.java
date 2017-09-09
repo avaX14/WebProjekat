@@ -59,4 +59,10 @@ public class SnippetResources {
 		 snippetService.deleteSnippet(snippet);
 	}
 	
+	@POST
+	@Path("/removeComment")
+	public void removeComment(Comment comment){
+		 snippetService.deleteComment(comment);
+	}
+	
 }

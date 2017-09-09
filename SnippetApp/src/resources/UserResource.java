@@ -26,7 +26,6 @@ public class UserResource {
 	
 	@GET
 	@Path("/allUsers")
-	
 	public List<User> getMessages(){
 		return userService.getAllUsers();
 	}

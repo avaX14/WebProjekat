@@ -7,7 +7,8 @@ $(document).ready(function() {
 		url:'../SnippetApp/rest/snippets/allSnippets',
 		success:function(snippets){
 			$.each(snippets, function(i, snippet){
-				$snippets.append('<li><a href="snippetInfo.html" data-id="' + snippet.id + '" onclick="getID(this)">' + snippet.opis + '</a></li>' );
+				console.log("SVI SNIPPETI");
+				$snippets.append('<li><label>' + snippet.userName + ": "+ '</label><a href="snippetInfo.html" data-id="' + snippet.id + '" onclick="getID(this)">' + snippet.opis + '</a></li>' );
 				
 			});
 		}

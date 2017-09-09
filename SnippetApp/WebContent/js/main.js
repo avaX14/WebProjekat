@@ -35,6 +35,19 @@ $(document).ready(function() {
     $("#btnSubmit").click(function(){
     	
     	var obj = { "userName":$('#userName').val(), "password" : $('#password').val(), "firstName" : $('#firstName').val(), "lastName" : $('#lastName').val(), "role" : "korisnik", "phone" : parseInt($('#phone').val()), "email" : $('#email').val(), "address" : $('#address').val(), "image" : $('#image').val()};
+    	var userName = $('#userName').val();
+    	
+    	$.ajax({
+    		type:'GET',
+    		url:'../SnippetApp/rest/users/allUsers',
+    		success:function(users){
+    			$.each(users, function(i, user){
+    				if(user.userName==userName){
+    					document.getElementById("message").classList.remove("hidden");
+    				}				
+    			});
+    		}
+    	});
     	
         console.log(obj);
         $.ajax({

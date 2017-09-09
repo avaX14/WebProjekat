@@ -48,4 +48,9 @@ public class SnippetService {
 	public List<Comment> getAllComments(Snippet snippet){
 		return SnippetDatabase.getComments(snippet);
 	}
+
+	public void deleteComment(Comment comment) {
+		SnippetDatabase.deleteComment(comment);
+		
+	}
 }

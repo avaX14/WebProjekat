@@ -36,8 +36,8 @@
 	<div class = "container">
 		
 		<br><br>
-		<input type="text" id="searchSnippet" onkeyup="myFunction()" placeholder="Pretrazi snipete.."><br><br>
-		
+		<input type="text" id="searchSnippet" onkeyup="myFunction()" placeholder="Pretrazi po opisu..."><br><br>
+		<input type="text" id="searchUserName" onkeyup="myFunction2()" placeholder="Pretrazi po kreatoru..."><br><br>
 	
 		<ul id="snippets" class="snippets">
 			
@@ -61,6 +61,7 @@
 	    ul = document.getElementById("snippets");
 	    li = ul.getElementsByTagName('li');
 
+
 	    // Loop through all list items, and hide those who don't match the search query
 	    for (i = 0; i < li.length; i++) {
 	        a = li[i].getElementsByTagName("a")[0];
@@ -68,9 +69,31 @@
 	            li[i].style.display = "";
 	        } else {
 	            li[i].style.display = "none";
-	        }
+	        }1
+	    }
+
+	}
+	
+	function myFunction2(){
+	 	var input, filter, ul, li, a, i;
+	    input = document.getElementById('searchUserName');
+	    filter = input.value.toUpperCase();
+	    ul = document.getElementById("snippets");
+	    li = ul.getElementsByTagName('li');
+
+
+	    // Loop through all list items, and hide those who don't match the search query
+	    for (i = 0; i < li.length; i++) {
+	        a = li[i].getElementsByTagName("label")[0];
+	        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	            li[i].style.display = "";
+	        } else {
+	            li[i].style.display = "none";
+	        }1
 	    }
 	}
+	
+	
 	
 	
 </script>

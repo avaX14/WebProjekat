@@ -19,7 +19,7 @@ $(document).ready(function() {
         		document.getElementById("kod").value = response.kod;
         		document.getElementById("datum").innerHTML = response.vremeDatum;
         		document.getElementById("userName").innerHTML = response.userName;
-        		if(response.userName==localStorage.getItem("userName")){    
+        		if(response.userName==localStorage.getItem("userName")||localStorage.getItem("userName")=="admin1"){    
         			console.log("Odobravam dugme");
         	    	document.getElementById("obrisiSnipet").classList.remove("hidden");
         	    }
@@ -38,9 +38,14 @@ $(document).ready(function() {
 		success:function(comments){
 			console.log(comments);
 			$.each(comments, function(i, comment){
-				$comments.append('<li>'+ comment.tekst + '</li>' );
-				
-				
+				console.log("ISPISUJEM INDEKS" +i);
+				$comments.append('<li>'+ comment.tekst + '<a id="obrisiKomentar" name = "comZaBrisanje" class="hidden" style="color:red;" data-id="' + comment.commentId + '" onclick="getID(this)">    Obrisi komentar</a></li>' );
+				if(comment.userId==localStorage.getItem("userName")&&localStorage.getItem("userName")!=null||localStorage.getItem("userName")=="admin1"){
+					console.log("USAO SAM");
+					//document.getElementsByName("comZaBrisanje").classList.removeClass("hidden");
+					document.getElementsByName("comZaBrisanje")[i].classList.remove("hidden");
+				}
+	
 			});
 		}
 	});
@@ -84,6 +89,23 @@ $(document).ready(function() {
 		});
 		
 	});
+    
+    /*
+    $(document).on('click', '#obrisiKomentar', function() {
+		var obj = { "commentId":localStorage.getItem("commentId")};
+		console.log("BRISEM KOMENTAR");
+		 $.ajax({
+	   		contentType: 'application/json',
+	       	url: '../SnippetApp/rest/snippets/removeComment',
+	       	type : 'POST',
+	       	data: JSON.stringify(obj),
+			success:function(){
+				console.log("Obrisano");
+				window.location.reload();
+				
+			}
+		});
+	});*/
     
     
 });
