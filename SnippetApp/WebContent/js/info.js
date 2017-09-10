@@ -2,6 +2,11 @@ $(document).ready(function() {
 	
 	var obj = { "id":localStorage.getItem("snippetId")};
 	var $comments = $('#comments');
+	
+	if(localStorage.getItem("blokiran")=="true"){
+		var d = document.getElementById("leaveComment");
+		d.className += " hidden";
+	}
 
     $.ajax({
     	contentType: 'application/json',

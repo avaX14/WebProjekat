@@ -33,7 +33,8 @@
   	</header>
   	
   	<div class = "container">
-        <div class="snippet">
+  		<label style="color:red; font-size:20px;" class="hidden" id="blokiranPoruka">Blokiran ste</label>
+        <div class="snippet" id="snippet">
            
            <select id="jezik">
                 <option value="" selected disabled hidden="true">Programski jezik</option>
@@ -46,7 +47,35 @@
             <input type="text" id="urlKoda" placeholder = "URL do repozitorijuma odakle je snippet preuzet"><br><br>
             <button type="text" id="snippetSubmit">Postavi snippet</button>
 		</div>
+		
+		<ul id="korisnici" class="korisnici">
+			
+		</ul>
+		
+		<div id="addJezik" class="hidden">
+			<input type="text" id="dodajJezik" placeholder = "Dodaj programski jezik"><br><br>
+			<button type="text" id="buttonJezik">Dodaj jezik</button>
+		</div>
   	</div>
+  
+ <script>
+ 
+ 	function blokiraj(e){
+		var obj = { "userName":$(e).attr('data-id')};
+		
+		$.ajax({
+	    	contentType: 'application/json',
+	        url: '../SnippetApp/rest/users/editUser',
+	        type : 'POST',
+	        data: JSON.stringify(obj),
+			success:function(user){
+				console.log(user);
+			}
+		});
+		
+	}
+ 
+ </script>
   
 </body>
 </html>

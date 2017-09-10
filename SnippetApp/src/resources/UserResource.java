@@ -14,6 +14,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.json.JSONObject;
 
+import com.google.gson.JsonObject;
+
 import model.User;
 import Service.UserService;
 
@@ -59,9 +61,10 @@ public class UserResource {
 		return userService.getOneUser(user.getUserName());
 	}
 	
-	@PUT
+	@POST
 	@Path("/editUser")
 	public User editUser(User user){
+		System.out.println("PRIMLJEN USER: " +user.toString());
 		return userService.editUser(user);
 	}
 	
@@ -69,6 +72,14 @@ public class UserResource {
 	@Path("/deleteUser")
 	public void deleteUser(User user){
 		userService.deleteUser(user);
+	}
+	
+	@POST
+	@Path("/addJezik")
+	public void addJezik(User user){
+		System.out.println("PRIMLJEN jezik: " + user.getUserName());
+		String jezik = user.getUserName();
+		userService.addJezik(jezik);
 	}
 
 	

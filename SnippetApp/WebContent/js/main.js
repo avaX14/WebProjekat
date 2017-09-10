@@ -1,5 +1,7 @@
 $(document).ready(function() {
 	
+	
+	
 	$("#btnLogin").click(function(){
 		
 		localStorage.clear();
@@ -24,6 +26,8 @@ $(document).ready(function() {
             		if(response.role=="admin"){
             			localStorage.setItem("admin", "true");
             		}
+            		localStorage.setItem("blokiran", response.blokiran);
+            
             		window.location.href = "pocetna.html";
             	}
 
@@ -34,7 +38,7 @@ $(document).ready(function() {
 	
     $("#btnSubmit").click(function(){
     	
-    	var obj = { "userName":$('#userName').val(), "password" : $('#password').val(), "firstName" : $('#firstName').val(), "lastName" : $('#lastName').val(), "role" : "korisnik", "phone" : parseInt($('#phone').val()), "email" : $('#email').val(), "address" : $('#address').val(), "image" : $('#image').val()};
+    	var obj = { "userName":$('#userName').val(), "password" : $('#password').val(), "firstName" : $('#firstName').val(), "lastName" : $('#lastName').val(), "role" : "korisnik", "phone" : parseInt($('#phone').val()), "email" : $('#email').val(), "address" : $('#address').val(), "blokiran" : "false"};
     	var userName = $('#userName').val();
     	
     	$.ajax({

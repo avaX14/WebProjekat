@@ -25,7 +25,9 @@ import model.User;
 public class UserDatabase {
 	
 	private static Map<String, User> allUsers = new HashMap<>();
+	private static List<String> allLangs = new ArrayList<>();
 	private static String filePath = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\users.txt";
+	private static String langsPath = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\jezici.txt";
 	
 	public static Map<String, User> getUsers() {
 		
@@ -50,7 +52,16 @@ public class UserDatabase {
 	
 	public static User updateUser(User user){
 		readFile();
-		allUsers.put(user.getUserName(), user);
+		
+		User foundUser=null;
+		for (Map.Entry<String, User> entry : allUsers.entrySet()) {
+			if(user.getUserName().equals(entry.getKey())){
+				foundUser = entry.getValue();
+				foundUser.setBlokiran("true");
+			}
+		    
+		}
+		allUsers.put(user.getUserName(), foundUser);
 		writeFile();
 		return user;
 		//writeFile();
@@ -152,6 +163,60 @@ public class UserDatabase {
 		    
 		}
 		return foundUser;
+		
+	}
+	
+	public static void readLangs(){
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(langsPath));
+			String line;
+			
+			while((line = br.readLine())!=null){
+				allLangs.add(line);
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void writeLangs(String jezik){
+		File outputFile;
+		BufferedWriter outputWriter;
+		
+		
+		outputFile = new File(langsPath);
+		try {
+			
+			outputWriter = new BufferedWriter(new FileWriter(outputFile));
+			outputWriter.write(jezik);
+			outputWriter.newLine();
+	
+			outputWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static void addJezik(String jezik) {
+		readLangs();
+		for (int i = 0; i < allLangs.size(); i++) {
+			if(allLangs.get(i).equals(jezik)){
+				break;
+			}
+		}
+
+		
+		writeLangs(jezik);
 		
 	}
 }

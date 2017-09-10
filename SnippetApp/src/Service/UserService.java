@@ -37,5 +37,10 @@ public class UserService {
 	public User getOneUser(String userName) {
 		return UserDatabase.getOneUser(userName);
 	}
+
+	public void addJezik(String jezik) {
+		UserDatabase.addJezik(jezik);
+		
+	}
 	
 }

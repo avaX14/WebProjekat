@@ -11,7 +11,7 @@ public class User {
 	private int phone;
 	private String email;
 	private String address;
-	private String image;
+	private String blokiran;
 	
 	public User(){
 		
@@ -29,7 +29,7 @@ public class User {
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
-		this.image = image;
+		this.blokiran = image;
 	}
 
 	public String getUserName() {
@@ -96,17 +96,17 @@ public class User {
 		this.address = address;
 	}
 
-	public String getImage() {
-		return image;
+	public String getBlokiran() {
+		return blokiran;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setBlokiran(String blokiran) {
+		this.blokiran = blokiran;
 	}
 
 	@Override
 	public String toString() {
-		return userName + "|" + password+ "|" +firstName+ "|" +lastName+ "|" +role+ "|" +phone+ "|" +email+ "|" +address+ "|" +image;
+		return userName + "|" + password+ "|" +firstName+ "|" +lastName+ "|" +role+ "|" +phone+ "|" +email+ "|" +address+ "|" +blokiran;
 	}
 	
 	

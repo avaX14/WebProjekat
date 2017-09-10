@@ -191,4 +191,19 @@ button{
 	font-size:25px;
 }
 
+.korisnici li{
+	margin-top:10px;
+	color:white;
+	background: #35424a;
+	height:50px;
+	margin-bottom :20px;
+	padding:5px;
+	font-size:25px;
+	
+}
+
+a:hover{
+	cursor:pointer;
+}
+
 

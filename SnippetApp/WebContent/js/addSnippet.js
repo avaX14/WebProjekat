@@ -1,6 +1,31 @@
 $(document).ready(function() {
 	
+	var $korisnici = $('#korisnici');
 	console.log(localStorage.getItem("userName"));
+	
+	if(localStorage.getItem("blokiran")=="true"){
+		var d = document.getElementById("snippet");
+		d.className += " hidden";
+		document.getElementById("blokiranPoruka").classList.remove("hidden");
+	}
+	
+	if(localStorage.getItem("userName")=="admin1"){
+		document.getElementById("addJezik").classList.remove("hidden");
+		$.ajax({
+			type:'GET',
+			url:'../SnippetApp/rest/users/allUsers',
+			success:function(korisnici){
+				$.each(korisnici, function(i, korisnik){
+					console.log("SVI SNIPPETI");
+					if(korisnik.userName!="admin1"){
+						$korisnici.append('<li><label>' + korisnik.userName + ": "+ '</label>' + korisnik.firstName + " " + korisnik.lastName+ "            "+ '<a data-id="' + korisnik.userName +  '" onclick="blokiraj(this)" style="color:red;">Blokiraj korisnika</a></li>' );
+					}
+				});
+			}
+		});
+	}
+	
+	
 	
 	$("#snippetSubmit").click(function(){
 		
@@ -52,6 +77,32 @@ $(document).ready(function() {
             }
         });     
 
-    }); 
+    });
+	
+	$("#buttonJezik").click(function(){
+		
+		var obj = {"userName":$('#dodajJezik').val()};
+    	
+        console.log(obj);
+        
+        $.ajax({
+        	contentType: 'application/json',
+            url: '../SnippetApp/rest/users/addJezik',
+            type : 'POST',
+            data: JSON.stringify(obj),
+            success: function(response){
+            	if(response==null){
+            		console.log('NULL');
+            	}else{
+            		console.log('USPEH');
+            	}
+
+            }
+        }); 
+		
+		
+		    
+
+    });
 	
 });

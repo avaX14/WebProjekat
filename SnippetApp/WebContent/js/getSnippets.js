@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	var $snippets = $('#snippets');
 	var obj = { "id":localStorage.getItem("snippetId")};
+
 	
 	$.ajax({
 		type:'GET',
