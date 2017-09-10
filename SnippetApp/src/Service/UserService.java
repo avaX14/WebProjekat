@@ -42,5 +42,10 @@ public class UserService {
 		UserDatabase.addJezik(jezik);
 		
 	}
+
+	public List<User> getAllLangs() {
+		// TODO Auto-generated method stub
+		return UserDatabase.allLangs();
+	}
 	
 }

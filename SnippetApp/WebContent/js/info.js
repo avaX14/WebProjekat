@@ -7,6 +7,7 @@ $(document).ready(function() {
 		var d = document.getElementById("leaveComment");
 		d.className += " hidden";
 	}
+	
 
     $.ajax({
     	contentType: 'application/json',
@@ -28,6 +29,11 @@ $(document).ready(function() {
         			console.log("Odobravam dugme");
         	    	document.getElementById("obrisiSnipet").classList.remove("hidden");
         	    }
+        		if(response.blokKom=="true"){
+        			console.log(response.blokKom);
+        			var d = document.getElementById("leaveComment");
+        			d.className += " hidden";
+        		}
         	}
 
         }
@@ -49,6 +55,9 @@ $(document).ready(function() {
 					console.log("USAO SAM");
 					//document.getElementsByName("comZaBrisanje").classList.removeClass("hidden");
 					document.getElementsByName("comZaBrisanje")[i].classList.remove("hidden");
+				}
+				if(localStorage.getItem("userName")=="admin1"){
+					document.getElementById("zabraniKom").classList.remove("hidden");
 				}
 	
 			});
@@ -94,6 +103,21 @@ $(document).ready(function() {
 		});
 		
 	});
+    
+    $("#zabraniKom").click(function(){
+    	
+    	var obj = { "id":localStorage.getItem("snippetId")};
+    	
+    	$.ajax({
+	    	contentType: 'application/json',
+	        url: '../SnippetApp/rest/snippets/editSnippet',
+	        type : 'POST',
+	        data: JSON.stringify(obj),
+			success:function(response){
+				console.log(response);
+			}
+		});
+    });
     
     /*
     $(document).on('click', '#obrisiKomentar', function() {

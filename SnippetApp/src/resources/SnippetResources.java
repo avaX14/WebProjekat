@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import model.Comment;
 import model.Snippet;
+import model.User;
 import Service.SnippetService;
 
 
@@ -63,6 +64,13 @@ public class SnippetResources {
 	@Path("/removeComment")
 	public void removeComment(Comment comment){
 		 snippetService.deleteComment(comment);
+	}
+	
+	@POST
+	@Path("/editSnippet")
+	public Snippet editUser(Snippet snippet){
+		System.out.println("USAO U EDIT");
+		return snippetService.editSnippet(snippet);
 	}
 	
 }

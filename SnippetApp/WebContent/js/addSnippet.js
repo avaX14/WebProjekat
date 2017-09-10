@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	
 	var $korisnici = $('#korisnici');
+	
 	console.log(localStorage.getItem("userName"));
 	
 	if(localStorage.getItem("blokiran")=="true"){
@@ -24,6 +25,24 @@ $(document).ready(function() {
 			}
 		});
 	}
+	
+
+ 	
+ 	$.ajax({
+		type:'GET',
+		url:'../SnippetApp/rest/users/allLangs',
+		success:function(jezici){
+			var options = "<option value='' selected disabled hidden='true'>Programski jezik</option>";
+			$.each(jezici, function(i, jezik){
+				options += "<option value ='" + jezik.userName+"'>"+jezik.userName+"</option>";
+				document.getElementById("jezik").innerHTML = options;
+				
+			});
+			
+		}
+	});
+	
+	
 	
 	
 	

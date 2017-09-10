@@ -82,7 +82,11 @@ public class UserResource {
 		userService.addJezik(jezik);
 	}
 
-	
+	@GET
+	@Path("/allLangs")
+	public List<User> getLangs(){
+		return userService.getAllLangs();
+	}
 	
 	
 }

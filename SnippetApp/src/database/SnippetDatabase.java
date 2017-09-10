@@ -78,10 +78,19 @@ public class SnippetDatabase {
 	
 	public static Snippet updateSnippet(Snippet snippet){
 		readSnippets();
-		allSnippets.put(snippet.getId(), snippet);
+		
+		Snippet foundSnippet=null;
+		for (Map.Entry<Integer, Snippet> entry : allSnippets.entrySet()) {
+			if(snippet.getId()==entry.getKey()){
+				System.out.println("MENJAM SNIPPET");
+				foundSnippet = entry.getValue();
+				foundSnippet.setBlokKom("true");
+			}
+		    
+		}
+		allSnippets.put(foundSnippet.getId(), foundSnippet);
 		writeSnippets();
-		return snippet;
-		//writeFile();
+		return foundSnippet;
 	}
 	
 	public static Snippet addSnippet(Snippet snippet){
@@ -108,6 +117,7 @@ public class SnippetDatabase {
 		if(snippet.getUserName()==null){
 			snippet.setUserName("Gost");
 		}
+		snippet.setBlokKom("false");
 		allSnippets.put(snippet.getId(), snippet);
 		writeSnippets();
 		
@@ -261,7 +271,7 @@ public class SnippetDatabase {
 		    while ((line = br.readLine())!=null) {
 		    	String[] parts = line.split("\\|");
 		    	System.out.println("BROJ PARTOOOOVA: " + parts.length);
-		    	Snippet snippet = new Snippet(Integer.parseInt(parts[0]), parts[1], parts[2], parts[3], parts[6], parts[5], parts[4]);
+		    	Snippet snippet = new Snippet(Integer.parseInt(parts[0]), parts[1], parts[2], parts[3], parts[7], parts[5],parts[6], parts[4]);
 				allSnippets.put(Integer.parseInt(parts[0]), snippet);    	
 		    }
 		    in.close();

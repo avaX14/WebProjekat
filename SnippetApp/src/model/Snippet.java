@@ -9,12 +9,13 @@ public class Snippet {
 	private String kod;
 	private String jezik;
 	private String urlKoda;
+	private String blokKom;
 	
 	public Snippet(){
 		
 	}
 
-	public Snippet(int id, String userName, String vremeDatum, String opis, String kod, String jezik, String urlKoda) {
+	public Snippet(int id, String userName, String vremeDatum, String opis, String kod, String jezik, String urlKoda, String blokKom) {
 		super();
 		this.id = id;
 		this.opis = opis;
@@ -23,6 +24,7 @@ public class Snippet {
 		this.urlKoda = urlKoda;
 		this.userName = userName;
 		this.vremeDatum = vremeDatum;
+		this.blokKom = blokKom;
 	}
 
 	public int getId() {
@@ -82,10 +84,20 @@ public class Snippet {
 	public void setVremeDatum(String vremeDatum) {
 		this.vremeDatum = vremeDatum;
 	}
+	
+	
+
+	public String getBlokKom() {
+		return blokKom;
+	}
+
+	public void setBlokKom(String blokKom) {
+		this.blokKom = blokKom;
+	}
 
 	@Override
 	public String toString() {
-		return id + "|" + userName + "|" + vremeDatum + "|" + opis + "|" + urlKoda + "|" + jezik + "|" + kod;
+		return id + "|" + userName + "|" + vremeDatum + "|" + opis + "|" + urlKoda + "|" + jezik + "|" +blokKom +"|" + kod;
 	}
 	
 	

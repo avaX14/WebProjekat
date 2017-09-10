@@ -26,6 +26,7 @@ public class UserDatabase {
 	
 	private static Map<String, User> allUsers = new HashMap<>();
 	private static List<String> allLangs = new ArrayList<>();
+	private static List<User> getAllLangs = new ArrayList<>();
 	private static String filePath = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\users.txt";
 	private static String langsPath = "C:\\Users\\Branko\\Documents\\GitHub\\WebProjekat\\jezici.txt";
 	
@@ -173,6 +174,9 @@ public class UserDatabase {
 			
 			while((line = br.readLine())!=null){
 				allLangs.add(line);
+				User user = new User();
+				user.setUserName(line);
+				getAllLangs.add(user);
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -195,7 +199,7 @@ public class UserDatabase {
 		outputFile = new File(langsPath);
 		try {
 			
-			outputWriter = new BufferedWriter(new FileWriter(outputFile));
+			outputWriter = new BufferedWriter(new FileWriter(outputFile,true));
 			outputWriter.write(jezik);
 			outputWriter.newLine();
 	
@@ -218,5 +222,11 @@ public class UserDatabase {
 		
 		writeLangs(jezik);
 		
+	}
+
+	public static List<User> allLangs() {
+		readLangs();
+		
+		return getAllLangs;
 	}
 }
